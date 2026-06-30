@@ -44,3 +44,4 @@ class TransitionRequest(CamelModel):
 
 class AttachDocumentRequest(CamelModel):
     filename: str
+    version: int

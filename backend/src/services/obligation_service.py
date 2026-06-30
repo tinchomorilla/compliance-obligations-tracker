@@ -121,7 +121,9 @@ class ObligationService:
         obligation.transition_to(new_status, now=self._clock.now())
         return self._repository.save(obligation, expected_version=version)
 
-    def attach_document(self, obligation_id: int, *, filename: str) -> Obligation:
+    def attach_document(
+        self, obligation_id: int, *, filename: str, version: int
+    ) -> Obligation:
         obligation = self._repository.get(obligation_id)
         obligation.document_filename = filename
-        return self._repository.save(obligation, expected_version=obligation.version)
+        return self._repository.save(obligation, expected_version=version)

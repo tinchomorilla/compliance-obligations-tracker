@@ -98,5 +98,7 @@ def attach_document(
     payload: AttachDocumentRequest,
     service: ObligationService = Depends(get_service),
 ) -> ObligationResponse:
-    obligation = service.attach_document(obligation_id, filename=payload.filename)
+    obligation = service.attach_document(
+        obligation_id, filename=payload.filename, version=payload.version
+    )
     return ObligationResponse.from_domain(obligation, as_of=service.today())
