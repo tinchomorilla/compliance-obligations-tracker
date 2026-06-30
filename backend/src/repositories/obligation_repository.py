@@ -36,6 +36,25 @@ def _to_domain(model: ObligationModel) -> Obligation:
     )
 
 
+def _to_model(obligation: Obligation) -> ObligationModel:
+    """Builds a brand-new ORM row from a domain entity. Used for inserts only —
+    `id` is left unset (DB-assigned) and `history` has nothing to persist yet,
+    since a freshly created `Obligation` always has empty history.
+    """
+    return ObligationModel(
+        type=obligation.type,
+        title=obligation.title,
+        description=obligation.description,
+        status=obligation.status,
+        due_date=obligation.due_date,
+        owner=obligation.owner,
+        requires_document=obligation.requires_document,
+        document_filename=obligation.document_filename,
+        company_tax_id=obligation.company_tax_id,
+        version=obligation.version,
+    )
+
+
 class ObligationRepository:
     def __init__(self, db: Session) -> None:
         self._db = db
@@ -51,18 +70,7 @@ class ObligationRepository:
         return [_to_domain(model) for model in models]
 
     def add(self, obligation: Obligation) -> Obligation:
-        model = ObligationModel(
-            type=obligation.type,
-            title=obligation.title,
-            description=obligation.description,
-            status=obligation.status,
-            due_date=obligation.due_date,
-            owner=obligation.owner,
-            requires_document=obligation.requires_document,
-            document_filename=obligation.document_filename,
-            company_tax_id=obligation.company_tax_id,
-            version=obligation.version,
-        )
+        model = _to_model(obligation)
         self._db.add(model)
         self._db.commit()
         self._db.refresh(model)
