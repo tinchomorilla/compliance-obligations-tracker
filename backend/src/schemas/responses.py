@@ -9,7 +9,7 @@ from pydantic.alias_generators import to_camel
 
 from common.masking import mask_tax_id
 from domain.enums import ObligationType, Status
-from domain.obligation import AuditEntry, Obligation
+from domain.obligation import AuditEntry, Obligation, ObligationSummary
 from schemas.requests import CamelModel
 
 
@@ -61,4 +61,20 @@ class ObligationResponse(CamelModel):
                 obligation.available_transitions(), key=lambda s: s.value
             ),
             history=[AuditEntryResponse.from_domain(e) for e in obligation.history],
+        )
+
+
+class SummaryResponse(CamelModel):
+    total: int
+    by_status: dict[Status, int]
+    overdue: int
+    due_soon: int
+
+    @classmethod
+    def from_domain(cls, summary: ObligationSummary) -> "SummaryResponse":
+        return cls(
+            total=summary.total,
+            by_status=summary.by_status,
+            overdue=summary.overdue,
+            due_soon=summary.due_soon,
         )

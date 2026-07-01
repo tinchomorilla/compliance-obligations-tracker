@@ -12,7 +12,7 @@ from datetime import date, datetime, timezone
 from typing import Protocol
 
 from domain.enums import ObligationType, Status
-from domain.obligation import Obligation
+from domain.obligation import Obligation, ObligationSummary
 from repositories.obligation_repository import ObligationRepository
 
 
@@ -61,6 +61,32 @@ class ObligationService:
 
     def get_obligation(self, obligation_id: int) -> Obligation:
         return self._repository.get(obligation_id)
+
+    def get_summary(self) -> ObligationSummary:
+        """KPI counts over ALL obligations, independent of any list filter.
+
+        Reuses the domain's `is_overdue`/`is_due_soon` rules; this method only
+        counts, it does not decide what counts as overdue or due soon.
+        """
+        obligations = self._repository.list()
+        as_of = self._clock.today()
+
+        by_status: dict[Status, int] = {status: 0 for status in Status}
+        overdue = 0
+        due_soon = 0
+        for obligation in obligations:
+            by_status[obligation.status] += 1
+            if obligation.is_overdue(as_of=as_of):
+                overdue += 1
+            elif obligation.is_due_soon(as_of=as_of):
+                due_soon += 1
+
+        return ObligationSummary(
+            total=len(obligations),
+            by_status=by_status,
+            overdue=overdue,
+            due_soon=due_soon,
+        )
 
     def today(self) -> date:
         """Exposes the injected clock's notion of "today" for response building."""

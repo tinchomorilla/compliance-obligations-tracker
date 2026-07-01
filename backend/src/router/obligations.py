@@ -14,7 +14,7 @@ from schemas.requests import (
     PatchObligation,
     TransitionRequest,
 )
-from schemas.responses import ObligationResponse
+from schemas.responses import ObligationResponse, SummaryResponse
 from services.obligation_service import ObligationService, SystemClock
 
 router = APIRouter(prefix="/obligations", tags=["obligations"])
@@ -22,6 +22,12 @@ router = APIRouter(prefix="/obligations", tags=["obligations"])
 
 def get_service(db: Session = Depends(get_db)) -> ObligationService:
     return ObligationService(ObligationRepository(db), SystemClock())
+
+
+@router.get("/summary", response_model=SummaryResponse)
+def get_summary(service: ObligationService = Depends(get_service)) -> SummaryResponse:
+    """Registered before `/{obligation_id}` so the literal path always wins."""
+    return SummaryResponse.from_domain(service.get_summary())
 
 
 @router.get("", response_model=list[ObligationResponse])

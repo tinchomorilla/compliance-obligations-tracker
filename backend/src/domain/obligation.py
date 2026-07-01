@@ -21,6 +21,9 @@ ALLOWED: dict[Status, set[Status]] = {
     Status.DONE: {Status.IN_PROGRESS},
 }
 
+# Documented threshold for the "due soon" summary rule.
+DUE_SOON_WINDOW_DAYS = 7
+
 
 @dataclass(frozen=True)
 class AuditEntry:
@@ -29,6 +32,18 @@ class AuditEntry:
     from_status: Status
     to_status: Status
     at: datetime
+
+
+@dataclass(frozen=True)
+class ObligationSummary:
+    """KPI counts over a set of obligations. A read-model, not a stateful entity —
+    built by the service from `is_overdue`/`is_due_soon`, never recomputed elsewhere.
+    """
+
+    total: int
+    by_status: dict[Status, int]
+    overdue: int
+    due_soon: int
 
 
 @dataclass
@@ -94,6 +109,14 @@ class Obligation:
             Status.SUBMITTED,
             Status.DONE,
         )
+
+    def is_due_soon(self, *, as_of: date, window_days: int = DUE_SOON_WINDOW_DAYS) -> bool:
+        """Not yet submitted/done, not already overdue, and due within `window_days`."""
+        if self.status in (Status.SUBMITTED, Status.DONE):
+            return False
+        if self.is_overdue(as_of=as_of):
+            return False
+        return (self.due_date - as_of).days <= window_days
 
     def available_transitions(self) -> set[Status]:
         transitions = set(ALLOWED[self.status])
