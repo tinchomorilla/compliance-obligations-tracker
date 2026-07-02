@@ -1,0 +1,83 @@
+{
+  "app.title": "Seguimiento de Obligaciones de Cumplimiento",
+  "nav.dashboard": "Panel",
+  "nav.newObligation": "Nueva obligación",
+  "nav.language": "Idioma",
+  "lang.en": "English",
+  "lang.es": "Español",
+
+  "status.pending": "Pendiente",
+  "status.in_progress": "En curso",
+  "status.submitted": "Presentada",
+  "status.done": "Completada",
+
+  "type.annual_report": "Informe anual",
+  "type.franchise_tax": "Impuesto de franquicia",
+  "type.boi_report": "Informe BOI",
+  "type.registered_agent_renewal": "Renovación de agente registrado",
+
+  "kpi.total": "Obligaciones totales",
+  "kpi.overdue": "Vencidas",
+  "kpi.dueSoon": "Por vencer",
+  "kpi.byStatus": "Por estado",
+
+  "filter.label": "Filtrar por estado",
+  "filter.all": "Todos los estados",
+
+  "list.empty": "No se encontraron obligaciones.",
+  "list.dueDate": "Vence {{date}}",
+  "list.owner": "Responsable: {{owner}}",
+  "list.overdueBadge": "Vencida",
+
+  "detail.description": "Descripción",
+  "detail.owner": "Responsable",
+  "detail.dueDate": "Fecha de vencimiento",
+  "detail.type": "Tipo",
+  "detail.companyTaxId": "CUIT de la empresa",
+  "detail.status": "Estado",
+  "detail.document": "Documento",
+  "detail.documentPresent": "Adjunto: {{filename}}",
+  "detail.documentMissing": "Sin documento adjunto",
+  "detail.documentRequired": "Se requiere un documento antes de poder presentar esta obligación.",
+  "detail.attachDocument": "Adjuntar documento",
+  "detail.filenamePlaceholder": "ej. informe-anual-2026.pdf",
+  "detail.edit": "Editar",
+  "detail.back": "Volver al panel",
+  "detail.version": "Versión {{version}}",
+
+  "history.title": "Historial de auditoría",
+  "history.empty": "Todavía no hay transiciones.",
+  "history.from": "Desde",
+  "history.to": "Hacia",
+  "history.at": "Cuándo",
+
+  "transitions.title": "Acciones",
+  "transitions.moveTo": "Mover a {{status}}",
+  "transitions.empty": "No hay acciones disponibles.",
+  "transitions.conflict": "Esta obligación fue modificada en otro lugar. Actualizá y volvé a intentar.",
+  "transitions.refresh": "Actualizar",
+
+  "form.type": "Tipo",
+  "form.title": "Título",
+  "form.description": "Descripción",
+  "form.dueDate": "Fecha de vencimiento",
+  "form.owner": "Responsable",
+  "form.requiresDocument": "Requiere documento",
+  "form.companyTaxId": "CUIT de la empresa",
+  "form.create.title": "Nueva obligación",
+  "form.create.submit": "Crear obligación",
+  "form.edit.title": "Editar obligación",
+  "form.edit.submit": "Guardar cambios",
+  "form.saving": "Guardando…",
+  "form.cancel": "Cancelar",
+
+  "attach.submit": "Adjuntar",
+  "attach.attaching": "Adjuntando…",
+
+  "error.title": "Algo salió mal",
+  "error.retry": "Reintentar",
+  "error.generic": "No pudimos cargar esta página.",
+  "error.notFound": "Obligación no encontrada.",
+
+  "loading.text": "Cargando…"
+}

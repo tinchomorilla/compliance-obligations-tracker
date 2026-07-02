@@ -1,0 +1,83 @@
+{
+  "app.title": "Compliance Obligations Tracker",
+  "nav.dashboard": "Dashboard",
+  "nav.newObligation": "New obligation",
+  "nav.language": "Language",
+  "lang.en": "English",
+  "lang.es": "Español",
+
+  "status.pending": "Pending",
+  "status.in_progress": "In progress",
+  "status.submitted": "Submitted",
+  "status.done": "Done",
+
+  "type.annual_report": "Annual report",
+  "type.franchise_tax": "Franchise tax",
+  "type.boi_report": "BOI report",
+  "type.registered_agent_renewal": "Registered agent renewal",
+
+  "kpi.total": "Total obligations",
+  "kpi.overdue": "Overdue",
+  "kpi.dueSoon": "Due soon",
+  "kpi.byStatus": "By status",
+
+  "filter.label": "Filter by status",
+  "filter.all": "All statuses",
+
+  "list.empty": "No obligations found.",
+  "list.dueDate": "Due {{date}}",
+  "list.owner": "Owner: {{owner}}",
+  "list.overdueBadge": "Overdue",
+
+  "detail.description": "Description",
+  "detail.owner": "Owner",
+  "detail.dueDate": "Due date",
+  "detail.type": "Type",
+  "detail.companyTaxId": "Company tax ID",
+  "detail.status": "Status",
+  "detail.document": "Document",
+  "detail.documentPresent": "Attached: {{filename}}",
+  "detail.documentMissing": "No document attached",
+  "detail.documentRequired": "A document is required before this obligation can be submitted.",
+  "detail.attachDocument": "Attach document",
+  "detail.filenamePlaceholder": "e.g. annual-report-2026.pdf",
+  "detail.edit": "Edit",
+  "detail.back": "Back to dashboard",
+  "detail.version": "Version {{version}}",
+
+  "history.title": "Audit history",
+  "history.empty": "No transitions yet.",
+  "history.from": "From",
+  "history.to": "To",
+  "history.at": "At",
+
+  "transitions.title": "Actions",
+  "transitions.moveTo": "Move to {{status}}",
+  "transitions.empty": "No actions available.",
+  "transitions.conflict": "This obligation was modified elsewhere. Refresh and retry.",
+  "transitions.refresh": "Refresh",
+
+  "form.type": "Type",
+  "form.title": "Title",
+  "form.description": "Description",
+  "form.dueDate": "Due date",
+  "form.owner": "Owner",
+  "form.requiresDocument": "Requires document",
+  "form.companyTaxId": "Company tax ID",
+  "form.create.title": "New obligation",
+  "form.create.submit": "Create obligation",
+  "form.edit.title": "Edit obligation",
+  "form.edit.submit": "Save changes",
+  "form.saving": "Saving…",
+  "form.cancel": "Cancel",
+
+  "attach.submit": "Attach",
+  "attach.attaching": "Attaching…",
+
+  "error.title": "Something went wrong",
+  "error.retry": "Try again",
+  "error.generic": "We couldn't load this page.",
+  "error.notFound": "Obligation not found.",
+
+  "loading.text": "Loading…"
+}
